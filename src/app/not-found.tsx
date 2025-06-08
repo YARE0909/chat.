@@ -2,7 +2,7 @@
 "use client";
 import Link from "next/link";
 import { AlertCircle } from "lucide-react";
-import { Button } from "@/components/Button";
+import { Button } from "@/components/common/Button";
 
 export default function NotFound() {
   return (

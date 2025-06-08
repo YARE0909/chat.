@@ -11,7 +11,7 @@ import {
   Minimize2,
   ScreenShare,
 } from "lucide-react";
-import { Button } from "../Button";
+import { Button } from "../common/Button";
 import { useUser } from "@/context/UserContext";
 
 export default function VideoCall() {

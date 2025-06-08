@@ -11,7 +11,7 @@ import {
   X,
   Trash2,
 } from "lucide-react";
-import { Button } from "../Button";
+import { Button } from "../common/Button";
 
 export interface MessageInputProps {
   onSend: (msg: string, files?: File[], voiceBlob?: Blob) => void;

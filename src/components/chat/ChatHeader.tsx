@@ -9,7 +9,7 @@ import {
   PhoneOff,
   VideoOff,
 } from "lucide-react";
-import { Button } from "../Button";
+import { Button } from "../common/Button";
 import { useUser } from "@/context/UserContext";
 
 interface ChatHeaderProps {

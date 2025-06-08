@@ -1,7 +1,7 @@
 "use client";
 import { Search, UserPlus, Settings } from "lucide-react";
 import React from "react";
-import { Button } from "../Button";
+import { Button } from "../common/Button";
 import AudioCall from "./AudioCall";
 import { useUser } from "@/context/UserContext";
 

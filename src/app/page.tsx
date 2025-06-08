@@ -9,7 +9,7 @@ import {
   LogIn,
   Chrome,
 } from "lucide-react";
-import { Button } from "@/components/Button";
+import { Button } from "@/components/common/Button";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
