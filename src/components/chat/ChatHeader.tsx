@@ -1,23 +1,37 @@
 "use client";
 import React from "react";
-import { Video, Phone, MoreVertical, Circle, ChevronLeft } from "lucide-react";
+import {
+  Video,
+  Phone,
+  MoreVertical,
+  Circle,
+  ChevronLeft,
+  PhoneOff,
+  VideoOff,
+} from "lucide-react";
 import { Button } from "../Button";
+import { useUser } from "@/context/UserContext";
 
 interface ChatHeaderProps {
   name: string;
   status?: "online" | "offline" | "busy";
   avatarUrl?: string;
-  onAudioCall?: () => void;
-  onVideoCall?: () => void;
 }
 
 export function ChatHeader({
   name,
   status = "online",
   avatarUrl = "/default-avatar.png",
-  onAudioCall,
-  onVideoCall,
 }: ChatHeaderProps) {
+  const {
+    startAudioCall,
+    inAudioCall,
+    endAudioCall,
+    inVideoCall,
+    startVideoCall,
+    endVideoCall,
+  } = useUser();
+
   const statusColor =
     status === "online"
       ? "text-green-500"
@@ -26,7 +40,7 @@ export function ChatHeader({
       : "text-gray-500";
 
   return (
-    <div className="w-full h-16 flex items-center justify-between px-4 py-3 bg-transparent backdrop-blur-md shadow-sm border-b border-b-zinc-700">
+    <div className="w-full h-16 flex items-center justify-between px-4 py-3 bg-white/10 backdrop-blur-md shadow-sm border-b border-b-zinc-700">
       {/* Left: Back button + avatar + name + status */}
       <div className="flex items-center space-x-3">
         <button className="md:hidden p-1 text-zinc-400 hover:text-white">
@@ -49,10 +63,18 @@ export function ChatHeader({
       {/* Right: Call + Video + More */}
       <div className="flex items-center space-x-2 text-zinc-300">
         <div>
-          <Button icon={Phone} onClick={onAudioCall} />
+          {inAudioCall ? (
+            <Button icon={PhoneOff} onClick={endAudioCall} color="red" />
+          ) : (
+            <Button icon={Phone} onClick={startAudioCall} />
+          )}
         </div>
         <div>
-          <Button icon={Video} onClick={onVideoCall} />
+          {inVideoCall ? (
+            <Button icon={VideoOff} onClick={endVideoCall} color="red" />
+          ) : (
+            <Button icon={Video} onClick={startVideoCall} />
+          )}
         </div>
         <div>
           <Button icon={MoreVertical} />

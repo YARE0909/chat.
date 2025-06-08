@@ -87,7 +87,7 @@ export function MessageInput({ onSend }: MessageInputProps) {
     `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
 
   return (
-    <div className="p-4 bg-black/30 backdrop-blur-md relative border-t border-zinc-700">
+    <div className="p-4 bg-white/10 backdrop-blur-md relative border-t border-zinc-700">
       {/* Attachments Preview */}
       {files.length > 0 && (
         <div className="flex items-center justify-between mb-2">

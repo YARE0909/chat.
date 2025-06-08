@@ -54,8 +54,6 @@ export default function ChatWindow() {
         name="Alex Johnson"
         status="online"
         avatarUrl="https://avatar.iran.liara.run/public"
-        onAudioCall={() => console.log("Start audio call")}
-        onVideoCall={() => console.log("Start video call")}
       />
 
       <div className="flex-1 overflow-y-auto p-6 flex flex-col">

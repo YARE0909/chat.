@@ -2,13 +2,17 @@
 import { Search, UserPlus, Settings } from "lucide-react";
 import React from "react";
 import { Button } from "../Button";
+import AudioCall from "./AudioCall";
+import { useUser } from "@/context/UserContext";
 
 export function ChatSidebar() {
   const contacts = ["Alice", "Bob", "Charlie", "Dana"];
   const activeContact = "Bob";
 
+  const { inAudioCall } = useUser();
+
   return (
-    <aside className="w-72 bg-black/30 backdrop-blur-md text-white flex flex-col gap-4 border-r border-zinc-700">
+    <aside className="w-72 bg-white/10 backdrop-blur-md text-white flex flex-col gap-4 border-r border-zinc-700">
       {/* Header */}
       <div className="w-full h-16 p-4 flex items-center justify-between border-b border-zinc-700">
         <h2 className="text-4xl font-bold tracking-wide">chat.</h2>
@@ -54,6 +58,11 @@ export function ChatSidebar() {
           );
         })}
       </ul>
+      {inAudioCall && (
+        <div className="p-2">
+          <AudioCall />
+        </div>
+      )}
     </aside>
   );
 }
