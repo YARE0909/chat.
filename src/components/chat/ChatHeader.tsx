@@ -34,10 +34,10 @@ export function ChatHeader({
 
   const statusColor =
     status === "online"
-      ? "text-green-500"
+      ? "bg-green-500"
       : status === "busy"
-      ? "text-yellow-400"
-      : "text-gray-500";
+      ? "bg-yellow-400"
+      : "bg-gray-500";
 
   return (
     <div className="w-full h-16 flex items-center justify-between px-4 py-3 bg-white/10 backdrop-blur-md shadow-sm border-b border-b-zinc-700">
@@ -53,10 +53,11 @@ export function ChatHeader({
         />
         <div className="flex flex-col text-sm">
           <span className="font-semibold text-white">{name}</span>
-          <span className="flex items-center text-xs text-zinc-400">
-            <Circle size={8} className={`mr-1 ${statusColor}`} />
+          <div className="flex items-center text-xs text-zinc-400 gap-2">
+            <div className={`w-2 h-2 ${statusColor} rounded-full shadow`} />
+
             {status}
-          </span>
+          </div>
         </div>
       </div>
 

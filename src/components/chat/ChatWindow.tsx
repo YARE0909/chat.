@@ -2,6 +2,8 @@ import { useState } from "react";
 import { MessageBubble } from "./MessageBubble";
 import { MessageInput } from "./MessageInput";
 import { ChatHeader } from "./ChatHeader";
+import { useUser } from "@/context/UserContext";
+import VideoCall from "./VideoCall";
 
 export default function ChatWindow() {
   const [messages, setMessages] = useState([
@@ -24,6 +26,8 @@ export default function ChatWindow() {
       isMine: false,
     },
   ]);
+
+
 
   const handleSend = (msg: string, files?: File[], voiceBlob?: Blob) => {
     if (voiceBlob) {

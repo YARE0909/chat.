@@ -35,8 +35,8 @@ export function ChatSidebar() {
           return (
             <li
               key={name}
-              className={`flex items-center gap-3 px-4 py-1 cursor-pointer rounded-lg mx-2 my-1 transition-all
-                ${isActive ? "bg-white/10" : "hover:bg-white/5"}
+              className={`flex items-center gap-3 px-4 py-1 cursor-pointer rounded-lg mx-2 my-1 transition-all backdrop-blur-md
+                ${isActive ? "bg-black/30" : "hover:bg-black/10"}
               `}
             >
               {/* Avatar */}
