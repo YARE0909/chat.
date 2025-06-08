@@ -7,26 +7,3 @@
 body {
   @apply text-white;
 }
-
-@layer utilities {
-  @keyframes blob-spin {
-    0% {
-      transform: translate(0, 0) rotate(0deg);
-    }
-    50% {
-      transform: translate(20px, -30px) rotate(180deg);
-    }
-    100% {
-      transform: translate(0, 0) rotate(360deg);
-    }
-  }
-
-  .animate-blob-spin {
-    animation: blob-spin 30s ease-in-out infinite;
-    will-change: transform;
-  }
-
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-}

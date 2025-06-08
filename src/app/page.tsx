@@ -6,27 +6,54 @@ import {
   Lock,
   Eye,
   EyeOff,
-  Loader2,
   LogIn,
-  User,
   Chrome,
-  GithubIcon,
 } from "lucide-react";
 import { Button } from "@/components/Button";
 import { useRouter } from "next/navigation";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = React.useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   const router = useRouter();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    router.push("/chat");
-  };
-
   const handleOAuthLogin = (provider: "google" | "github") => {
     console.log(`Logging in with ${provider}`);
+  };
+
+  type FormData = {
+    username: string;
+    password: string;
+  };
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      // TODO: Remove Later
+      router.push("/chat");
+
+      // const formData = new FormData();
+      // formData.append("username", data.username);
+      // formData.append("password", data.password);
+      // const res = await login(formData);
+      // if (res.status === "success") {
+      //   if (res.data.role === "ADMIN") {
+      //     router.push("/admin");
+      //   } else {
+      //     router.push("/chat");
+      //   }
+      //   toast.success(res.message);
+      // } else {
+      //   toast.error(res.message);
+      // }
+    } catch (error) {
+      console.error("Login failed", error);
+    }
   };
 
   return (
@@ -38,15 +65,22 @@ export default function LoginPage() {
           <p className="text-sm text-zinc-400">Login to continue</p>
         </div>
 
-        <form className="space-y-4" onSubmit={handleLogin}>
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="relative">
             <Mail className="absolute left-3 top-3.5 text-zinc-400" size={18} />
             <input
               type="email"
               required
               className="w-full pl-10 pr-4 py-2 rounded-md bg-zinc-900 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Email"
+              autoComplete="username"
+              {...register("username", { required: "Username is required" })}
+              placeholder="you@example.com"
             />
+            {errors.username && (
+              <p className="mt-1 text-xs text-red-600">
+                {errors.username.message}
+              </p>
+            )}
           </div>
 
           <div className="relative">
@@ -55,15 +89,26 @@ export default function LoginPage() {
               type={showPassword ? "text" : "password"}
               required
               className="w-full pl-10 pr-10 py-2 rounded-md bg-zinc-900 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Password"
+              autoComplete="current-password"
+              {...register("password", { required: "Password is required" })}
+              placeholder="********"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-3 top-2.5 text-zinc-400 border-l border-l-zinc-700 pl-2"
             >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              {showPassword ? (
+                <EyeOff className="cursor-pointer" size={18} />
+              ) : (
+                <Eye className="cursor-pointer" size={18} />
+              )}
             </button>
+            {errors.password && (
+              <p className="mt-1 text-xs text-red-600">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <Button

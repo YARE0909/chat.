@@ -30,7 +30,7 @@ const COLOR_MAP: Record<
     text: "text-white",
     hover: "hover:bg-indigo-700",
   },
-  red: { bg: "bg-red-600", text: "text-black", hover: "hover:bg-red-700" },
+  red: { bg: "bg-red-600", text: "text-white", hover: "hover:bg-red-700" },
   green: {
     bg: "bg-green-600",
     text: "text-white",
