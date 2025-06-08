@@ -1,8 +1,5 @@
 'use client';
 import React from 'react';
-import { Button } from '@/components/Button';
-import { ControlButton } from '@/components/ControlButton';
-import { VideoTile } from '@/components/VideoTile';
 import { Sidebar } from '@/components/Sidebar';
 
 export default function Home() {

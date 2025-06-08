@@ -8,7 +8,7 @@ export function Sidebar() {
         ({ icon: Icon }, i) => (
           <button
             key={i}
-            className="p-3 rounded-full bg-white cursor-pointer"
+            className="p-3 rounded-full bg-white text-black cursor-pointer"
           >
             <Icon size={18} />
           </button>

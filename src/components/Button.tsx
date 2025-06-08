@@ -1,20 +1,28 @@
-'use client';
-import { LucideIcon } from 'lucide-react';
+"use client";
+import { LucideIcon } from "lucide-react";
 interface ButtonProps {
   icon?: LucideIcon;
-  label: string;
+  label?: string;
   onClick?: () => void;
   disabled?: boolean;
+  type?: "submit" | "button" | "reset";
 }
-export function Button({ icon: Icon, label, onClick, disabled }: ButtonProps) {
+export function Button({
+  icon: Icon,
+  label,
+  onClick,
+  disabled,
+  type = "button",
+}: ButtonProps) {
   return (
     <button
       onClick={onClick}
       disabled={disabled}
-      className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white"
+      className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-2xl bg-white text-black cursor-pointer"
+      type={type}
     >
       {Icon && <Icon size={18} />}
-      <span>{label}</span>
+      {label && <span>{label}</span>}
     </button>
   );
 }
