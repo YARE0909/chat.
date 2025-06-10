@@ -39,7 +39,7 @@ export function ChatHeader({
       : "bg-gray-500";
 
   return (
-    <div className="w-full h-16 flex items-center justify-between px-4 py-3 bg-white/10 backdrop-blur-md shadow-sm">
+    <div className="w-full h-16 flex items-center justify-between px-4 bg-white/10 backdrop-blur-md shadow-sm border-l border-l-zinc-700">
       {/* Left: Back button + avatar + name + status */}
       <div className="flex items-center space-x-3">
         <button className="md:hidden p-1 text-zinc-400 hover:text-white">

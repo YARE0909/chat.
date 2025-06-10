@@ -10,7 +10,7 @@ export function ChatSidebar() {
   const { inAudioCall, dmList, activeDm, updateCurrentDm } = useUser();
 
   return (
-    <aside className="w-72 bg-white/10 backdrop-blur-md text-white flex flex-col gap-4 border-r border-zinc-700">
+    <aside className="w-72 bg-white/10 backdrop-blur-md text-white flex flex-col gap-4">
       {/* Header */}
       <div className="w-full h-16 p-4 flex items-center justify-between">
         <h2 className="text-4xl font-bold tracking-wide">chat.</h2>

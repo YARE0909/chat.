@@ -87,7 +87,7 @@ export function MessageInput({ onSend }: MessageInputProps) {
     `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
 
   return (
-    <div className="w-full p-4 bg-white/10 backdrop-blur-md relative">
+    <div className="w-full h-16 bg-white/10 backdrop-blur-md relative flex items-center border-l border-l-zinc-700">
       {/* Attachments Preview */}
       {files.length > 0 && (
         <div className="flex items-center justify-between mb-2">
@@ -131,7 +131,7 @@ export function MessageInput({ onSend }: MessageInputProps) {
         </div>
       )}
 
-      <div className="flex items-center space-x-2">
+      <div className="w-full h-full flex items-center px-4 space-x-2">
         {/* Emoji picker placeholder */}
         <div>
           <Button icon={Smile} />
