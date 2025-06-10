@@ -7,6 +7,7 @@ import VideoCall from "./VideoCall";
 import { useUser } from "@/context/UserContext";
 import { MessageSquareQuote, PlusCircle } from "lucide-react";
 import { Button } from "../common/Button";
+import { getSocket } from "@/lib/socket";
 
 const userMessages = [
   {
@@ -176,6 +177,8 @@ export default function ChatWindow() {
   const [messages, setMessages] =
     useState<{ type: string; content: string; isMine: boolean }[]>();
 
+  const socket = getSocket();
+
   const { inAudioCall, inVideoCall, dmList, activeDm, updateCurrentDm } =
     useUser();
 
@@ -203,6 +206,7 @@ export default function ChatWindow() {
         ]);
       });
     } else if (msg.trim()) {
+      socket?.emit("message", msg.trim());
       setMessages((prev) => [
         ...prev!,
         { type: "text", content: msg.trim(), isMine: true },

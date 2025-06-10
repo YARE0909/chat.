@@ -8,6 +8,7 @@ import UserIcon from "./UserIcon";
 import { logout } from "@/actions/authentication/logout";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { getSocket } from "@/lib/socket";
 
 export function ChatSidebar() {
   const { inAudioCall, dmList, activeDm, updateCurrentDm } = useUser();
@@ -18,6 +19,8 @@ export function ChatSidebar() {
     const res = await logout();
 
     if (res.status === "success") {
+      const socket = getSocket();
+      socket?.disconnect();
       router.push("/");
       toast.success("Logged Out Successfully");
     } else {
