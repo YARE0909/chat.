@@ -15,26 +15,20 @@ export function ChatSidebar() {
       <div className="w-full h-16 p-4 flex items-center justify-between">
         <h2 className="text-4xl font-bold tracking-wide">chat.</h2>
       </div>
-      <div className="flex items-center gap-2 text-zinc-400 px-4">
+      <div className="flex items-center gap-2 px-2">
         {[Search, UserPlus, Settings].map((Icon, i) => (
           <Button key={i} icon={Icon} />
-          // <button
-          //   key={i}
-          //   className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition shadow-neo-sm"
-          // >
-          //   <Icon size={16} />
-          // </button>
         ))}
       </div>
       {/* Contact List */}
-      <ul className="flex-1 overflow-y-auto flex flex-col gap-1">
+      <ul className="flex-1 overflow-y-auto flex flex-col gap-2 px-2">
         {dmList.map((name) => {
           const isActive = name?.userId === activeDm?.userId;
           return (
             <li
               key={name.userId}
-              className={`flex items-center gap-3 px-4 py-1 cursor-pointer rounded-lg mx-2 my-1 transition-all backdrop-blur-md
-                ${isActive ? "bg-white/10" : "hover:bg-black/10"}
+              className={`flex items-center gap-3 px-4 py-1 cursor-pointer rounded-lg transition-all backdrop-blur-md
+                ${isActive ? "bg-white/10" : "hover:bg-white/10"}
               `}
               onClick={() => updateCurrentDm(name)}
             >

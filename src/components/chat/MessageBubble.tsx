@@ -32,10 +32,10 @@ export function MessageBubble({
   return (
     <div className={`flex flex-col ${isMine ? "items-end" : "items-start"}`}>
       <div
-        className={`max-w-xs p-2 my-1 rounded-2xl flex flex-col space-y-1 ${
+        className={`max-w-xs p-2 my-1 rounded-xl flex flex-col space-y-1 ${
           isMine
-            ? "bg-purple-600 self-end text-white shadow-neo"
-            : "bg-white/10 self-start text-gray-100 shadow-neo"
+            ? "bg-gradient-to-bl from-purple-500/70 to-indigo-500/70 backdrop-blur-lg self-end text-white shadow-neo"
+            : "bg-white/10 backdrop-blur-lg self-start text-gray-100 shadow-neo"
         }`}
       >
         {type === "text" && <p className="text-sm break-words font-medium">{content}</p>}

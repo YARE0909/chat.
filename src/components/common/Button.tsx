@@ -23,7 +23,7 @@ const COLOR_MAP: Record<
   ButtonColor,
   { bg: string; text: string; hover?: string }
 > = {
-  white: { bg: "bg-white", text: "text-black", hover: "hover:bg-zinc-400" },
+  white: { bg: "bg-white/10", text: "text-white", hover: "hover:bg-white hover:text-black" },
   blue: { bg: "bg-blue-600", text: "text-white", hover: "hover:bg-blue-700" },
   indigo: {
     bg: "bg-indigo-600",

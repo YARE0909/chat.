@@ -16,7 +16,6 @@ export default function AudioCall() {
   const [callTime, setCallTime] = useState(0);
   const [muted, setMuted] = useState(false);
   const [speakerOn, setSpeakerOn] = useState(true);
-  const [visible, setVisible] = useState(true);
 
   const callRef = useRef<HTMLDivElement>(null);
 
@@ -32,17 +31,6 @@ export default function AudioCall() {
       2,
       "0"
     )}`;
-
-  if (!visible) {
-    return (
-      <button
-        className="p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-xl transition"
-        onClick={() => setVisible(true)}
-      >
-        <ChevronUp size={20} />
-      </button>
-    );
-  }
 
   return (
     <div

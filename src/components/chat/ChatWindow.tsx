@@ -218,7 +218,7 @@ export default function ChatWindow() {
       {activeDm ? (
         <div className="w-full h-screen flex-1 flex flex-col">
           <ChatHeader name={activeDm.userName} status="online" />
-          <div className="flex-1 overflow-y-auto p-6 flex flex-col bg-black">
+          <div className="flex-1 overflow-y-auto p-6 flex flex-col bg-zinc-950">
             {messages?.map((m, i) => (
               <MessageBubble
                 key={i}
@@ -233,9 +233,9 @@ export default function ChatWindow() {
           <MessageInput onSend={handleSend} />
         </div>
       ) : (
-        <div className="w-full h-screen flex flex-col justify-center items-center bg-black/30 backdrop-blur-md">
+        <div className="w-full h-screen flex flex-col justify-center items-center bg-zinc-950/30 backdrop-blur-md">
           {/* Glass card */}
-          <div className="flex flex-col items-center bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-neo space-y-4">
+          <div className="flex flex-col items-center bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-neo space-y-4">
             <MessageSquareQuote className="w-16 h-16 text-white/70 animate-pulse" />
             <h2 className="text-2xl font-semibold text-white">
               No Conversation Open

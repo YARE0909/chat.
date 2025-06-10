@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lexend.variable} antialiased font-main relative h-screen w-full bg-black overflow-hidden text-white`}
+        className={`${lexend.variable} antialiased font-main relative h-screen w-full bg-zinc-950 overflow-hidden text-white`}
       >
         <UserProvider>
           {/* animated background blobs */}

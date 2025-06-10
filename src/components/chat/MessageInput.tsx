@@ -165,7 +165,7 @@ export function MessageInput({ onSend }: MessageInputProps) {
 
         {/* Message Input */}
         <input
-          className="flex-1 bg-transparent border border-zinc-700 rounded-full px-4 py-2 focus:outline-none placeholder:text-zinc-500"
+          className="flex-1 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 focus:outline-none placeholder:text-zinc-500 text-sm"
           placeholder="Type a message"
           value={msg}
           maxLength={1000}

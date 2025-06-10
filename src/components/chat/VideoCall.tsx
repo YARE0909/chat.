@@ -59,12 +59,12 @@ export default function VideoCall() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-md"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950/50 backdrop-blur-md"
       aria-modal="true"
     >
       <div
         ref={wrapperRef}
-        className="relative w-full max-w-3/4 aspect-video bg-black/20 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-3/4 aspect-video bg-zinc-950/20 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden"
       >
         {/* Video Streams */}
         <div className="w-full h-full grid grid-cols-[1fr] grid-rows-[1fr]">

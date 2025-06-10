@@ -1,14 +1,6 @@
 "use client";
 import React from "react";
-import {
-  Github,
-  Mail,
-  Lock,
-  Eye,
-  EyeOff,
-  LogIn,
-  Chrome,
-} from "lucide-react";
+import { Github, Mail, Lock, Eye, EyeOff, LogIn, Chrome } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -57,8 +49,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0e0e0e] px-4">
-      <div className="w-full max-w-md bg-[#1a1a1a] text-white rounded-xl p-8 shadow-2xl space-y-6">
+    <div className="min-h-screen flex items-center justify-center bg-zinc-950/30 backdrop-blur-lg px-4">
+      <div className="w-full max-w-md bg-white/10 backdrop-blur-lg text-white rounded-xl p-8 shadow-2xl space-y-6">
         <div className="text-center">
           <h1 className="font-extrabold text-6xl">chat.</h1>
           <h2 className="text-2xl font-bold mt-2">Welcome back</h2>
@@ -67,11 +59,11 @@ export default function LoginPage() {
 
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="relative">
-            <Mail className="absolute left-3 top-3.5 text-zinc-400" size={18} />
+            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 z-10" size={18} />
             <input
               type="email"
               required
-              className="w-full pl-10 pr-4 py-2 rounded-md bg-zinc-900 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-10 flex-1 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 focus:outline-none placeholder:text-zinc-500"
               autoComplete="username"
               {...register("username", { required: "Username is required" })}
               placeholder="you@example.com"
@@ -83,12 +75,12 @@ export default function LoginPage() {
             )}
           </div>
 
-          <div className="relative">
-            <Lock className="absolute left-3 top-3.5 text-zinc-400" size={18} />
+          <div className="relative flex items-center">
+            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 z-10" size={18} />
             <input
               type={showPassword ? "text" : "password"}
               required
-              className="w-full pl-10 pr-10 py-2 rounded-md bg-zinc-900 border border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-10 pr-10 bg-white/10 backdrop-blur-lg rounded-full px-4 py-2 focus:outline-none placeholder:text-zinc-500"
               autoComplete="current-password"
               {...register("password", { required: "Password is required" })}
               placeholder="********"
@@ -96,7 +88,7 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-2.5 text-zinc-400 border-l border-l-zinc-700 pl-2"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 border-l border-l-zinc-700 pl-2"
             >
               {showPassword ? (
                 <EyeOff className="cursor-pointer" size={18} />
@@ -119,9 +111,8 @@ export default function LoginPage() {
           />
         </form>
 
-        <div className="relative">
-          <hr className="border-zinc-700" />
-          <span className="absolute inset-x-0 top-[-0.6rem] mx-auto w-max px-2 text-xs bg-[#1a1a1a] text-zinc-500">
+        <div className="w-full flex justify-center items-center">
+          <span className="text-xs text-zinc-500">
             or continue with
           </span>
         </div>
