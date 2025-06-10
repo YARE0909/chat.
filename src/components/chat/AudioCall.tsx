@@ -6,7 +6,6 @@ import {
   Volume2,
   VolumeX,
   PhoneOff,
-  ChevronUp,
 } from "lucide-react";
 import { Button } from "../common/Button";
 import { useUser } from "@/context/UserContext";

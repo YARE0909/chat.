@@ -1,5 +1,5 @@
 "use client";
-import { Search, UserPlus, Settings } from "lucide-react";
+import { Search, UserPlus, FilterIcon } from "lucide-react";
 import React from "react";
 import { Button } from "../common/Button";
 import AudioCall from "./AudioCall";
@@ -16,7 +16,7 @@ export function ChatSidebar() {
         <h2 className="text-4xl font-bold tracking-wide">chat.</h2>
       </div>
       <div className="flex items-center gap-2 px-2">
-        {[Search, UserPlus, Settings].map((Icon, i) => (
+        {[Search, UserPlus, FilterIcon].map((Icon, i) => (
           <Button key={i} icon={Icon} />
         ))}
       </div>
