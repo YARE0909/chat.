@@ -64,7 +64,7 @@ export default function VideoCall() {
     >
       <div
         ref={wrapperRef}
-        className="relative w-full max-w-3/4 aspect-video bg-zinc-950/20 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden"
+        className="relative w-full max-w-3/4 aspect-video bg-zinc-950/20 backdrop-blur-lg rounded-2xl overflow-hidden"
       >
         {/* Video Streams */}
         <div className="w-full h-full grid grid-cols-[1fr] grid-rows-[1fr]">

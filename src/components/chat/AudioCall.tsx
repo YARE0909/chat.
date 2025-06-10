@@ -34,7 +34,7 @@ export default function AudioCall() {
   return (
     <div
       ref={callRef}
-      className="z-50 w-full bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-4 flex flex-col items-center space-y-4"
+      className="z-50 w-full bg-white/10 backdrop-blur-md rounded-xl p-4 flex flex-col items-center space-y-4"
     >
       {/* Avatar and Info */}
       <div className="w-full flex items-center justify-start gap-2">
