@@ -8,6 +8,7 @@ import { useUser } from "@/context/UserContext";
 import { MessageSquareQuote, PlusCircle } from "lucide-react";
 import { Button } from "../common/Button";
 import { getSocket } from "@/lib/socket";
+import toast from "react-hot-toast";
 
 const userMessages = [
   {
@@ -214,6 +215,11 @@ export default function ChatWindow() {
     }
   };
 
+  const handleToast = async () => {
+    toast.success("TOAST");
+    toast.error("TOAST");
+  };
+
   return (
     <div className="flex w-full h-screen">
       <div className="w-fit flex">
@@ -248,7 +254,11 @@ export default function ChatWindow() {
               Select a chat from the sidebar or start a new conversation to get
               messaging!
             </p>
-            <Button icon={PlusCircle} label="New Message" />
+            <Button
+              icon={PlusCircle}
+              label="New Message"
+              onClick={handleToast}
+            />
           </div>
         </div>
       )}

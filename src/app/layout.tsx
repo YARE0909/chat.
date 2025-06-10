@@ -25,7 +25,26 @@ export default function RootLayout({
 
           {/* content layer */}
           <div className="relative z-10 h-full">{children}</div>
-          <Toaster />
+          <Toaster
+            toastOptions={{
+              success: {
+                style: {
+                  background: "#ffffff20",
+                  color: "white",
+                  borderRadius: "1rem",
+                  fontWeight: "bold",
+                },
+              },
+              error: {
+                style: {
+                  background: "#ffffff20",
+                  color: "white",
+                  borderRadius: "1rem",
+                  fontWeight: "bold",
+                },
+              },
+            }}
+          />
         </UserProvider>
       </body>
     </html>
