@@ -51,7 +51,7 @@ export function VoicePlayer({ src }: { src: string }) {
   };
 
   return (
-    <div className="flex items-center space-x-2 w-full">
+    <div className="flex items-center space-x-2 w-full bg-transparent rounded-xl">
       <audio
         ref={audioRef}
         src={src}
