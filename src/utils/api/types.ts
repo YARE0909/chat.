@@ -16,13 +16,21 @@ export type Endpoint<Request, Response> = {
 
 // User Login
 export interface LoginRequest {
-  Username: string;
-  Password: string;
+  email: string;
+  password: string;
 }
 
 export interface LoginResponse {
   token: string;
 }
+
+export interface RegisterRequest {
+  email: string;
+  password: string;
+  name: string;
+}
+
+export interface RegisterResponse {}
 
 export interface LogoutRequest {
   Username: string;
@@ -30,26 +38,4 @@ export interface LogoutRequest {
 
 export interface GetQuestionListRequest {
   testid: number;
-}
-
-export interface GetQuestionListResponse {
-  questionId: number;
-  questionText: string;
-  questionType: QuestionType;
-  questionStatus:
-    | "Not Visited"
-    | "Attempted"
-    | "UnAttempted"
-    | "To Review"
-    | "Answered To Review";
-  marks: number;
-  negativeMarks: number;
-  questionSectionId: number;
-  options: string;
-  userAnswer: string;
-}
-
-export interface QuestionType {
-  questionTypeId: number;
-  questionType: string;
 }

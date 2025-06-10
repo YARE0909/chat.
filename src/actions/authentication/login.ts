@@ -16,8 +16,8 @@ export async function login(formData: FormData): Promise<ActionResponse> {
 
   try {
     const res = await apiHandler(endpoints.loginUser, {
-      Username: username as string,
-      Password: password as string,
+      email: username as string,
+      password: password as string,
     });
 
     if (res.status === 200) {

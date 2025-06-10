@@ -1,19 +1,40 @@
 "use client";
-import { Search, UserPlus, FilterIcon } from "lucide-react";
+import { Search, UserPlus, FilterIcon, LogOut } from "lucide-react";
 import React from "react";
 import { Button } from "../common/Button";
 import AudioCall from "./AudioCall";
 import { useUser } from "@/context/UserContext";
 import UserIcon from "./UserIcon";
+import { logout } from "@/actions/authentication/logout";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export function ChatSidebar() {
   const { inAudioCall, dmList, activeDm, updateCurrentDm } = useUser();
+
+  const router = useRouter();
+
+  const logUserOut = async () => {
+    const res = await logout();
+
+    if (res.status === "success") {
+      router.push("/");
+      toast.success("Logged Out Successfully");
+    } else {
+      toast.error("Something Went Wrong");
+    }
+  };
 
   return (
     <aside className="w-72 bg-white/10 backdrop-blur-md text-white flex flex-col gap-4">
       {/* Header */}
       <div className="w-full h-16 p-4 flex items-center justify-between">
-        <h2 className="text-4xl font-bold tracking-wide">chat.</h2>
+        <div>
+          <h2 className="text-4xl font-bold tracking-wide">chat.</h2>
+        </div>
+        <div>
+          <Button icon={LogOut} onClick={logUserOut} />
+        </div>
       </div>
       <div className="flex items-center gap-2 px-2">
         {[Search, UserPlus, FilterIcon].map((Icon, i) => (

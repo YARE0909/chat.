@@ -4,6 +4,8 @@ import { Github, Mail, Lock, Eye, EyeOff, LogIn, Chrome } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { login } from "@/actions/authentication/login";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -27,22 +29,22 @@ export default function LoginPage() {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       // TODO: Remove Later
-      router.push("/chat");
+      // router.push("/chat");
 
-      // const formData = new FormData();
-      // formData.append("username", data.username);
-      // formData.append("password", data.password);
-      // const res = await login(formData);
-      // if (res.status === "success") {
-      //   if (res.data.role === "ADMIN") {
-      //     router.push("/admin");
-      //   } else {
-      //     router.push("/chat");
-      //   }
-      //   toast.success(res.message);
-      // } else {
-      //   toast.error(res.message);
-      // }
+      const formData = new FormData();
+      formData.append("username", data.username);
+      formData.append("password", data.password);
+      const res = await login(formData);
+      if (res.status === "success") {
+        if (res.data.role === "ADMIN") {
+          router.push("/admin");
+        } else {
+          router.push("/chat");
+        }
+        toast.success(res.message);
+      } else {
+        toast.error(res.message);
+      }
     } catch (error) {
       console.error("Login failed", error);
     }

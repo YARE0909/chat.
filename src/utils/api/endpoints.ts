@@ -1,10 +1,10 @@
 import {
   Endpoint,
-  GetQuestionListRequest,
-  GetQuestionListResponse,
   LoginRequest,
   LoginResponse,
   LogoutRequest,
+  RegisterRequest,
+  RegisterResponse,
 } from "./types";
 
 export const endpoints = {
@@ -13,14 +13,14 @@ export const endpoints = {
     path: () => "/api/auth/login",
     type: "OPEN",
   } as Endpoint<LoginRequest, LoginResponse>,
+  registerUser: {
+    method: "POST",
+    path: () => "/api/auth/register",
+    type: "OPEN",
+  } as Endpoint<RegisterRequest, RegisterResponse>,
   logoutUser: {
     method: "POST",
     path: () => "/api/auth/logout",
     type: "CLOSE",
   } as Endpoint<LogoutRequest, null>,
-  getQuestions: {
-    method: "GET",
-    path: ({ testid }) => `/api/Questions?testId=${testid}`,
-    type: "CLOSE",
-  } as Endpoint<GetQuestionListRequest, GetQuestionListResponse>,
 };
