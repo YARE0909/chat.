@@ -19,8 +19,8 @@ export default function RootLayout({
         <UserProvider>
           {/* animated background blobs */}
           <div className="absolute inset-0 pointer-events-none z-0">
-            <div className="absolute w-[100%] h-[80%] bg-gradient-to-br from-purple-700/50 via-pink-600/50 to-indigo-500/50 opacity-20 rounded-full filter blur-3xl transition-transform duration-100 top-0 left-0" />
-            <div className="absolute w-[50%] h-[50%] bg-gradient-to-tr from-blue-600/50 via-teal-500/50 to-green-400/50 opacity-20 rounded-full filter blur-3xl transition-transform duration-100 bottom-0 right-0" />
+            <div className="absolute w-[100%] h-[80%] bg-gradient-to-br from-purple-700/50 via-pink-600/50 to-indigo-500/50 opacity-20 rounded-full filter blur-3xl transition-transform duration-100 top-0 left-0 animate-[pulse_10s_ease-in-out_infinite]" />
+            <div className="absolute w-[50%] h-[50%] bg-gradient-to-tr from-blue-600/50 via-teal-500/50 to-green-400/50 opacity-20 rounded-full filter blur-3xl transition-transform duration-100 bottom-0 right-0 animate-[pulse_10s_ease-in-out_infinite]" />
           </div>
 
           {/* content layer */}

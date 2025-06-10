@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { Button } from "../common/Button";
 import { useUser } from "@/context/UserContext";
+import UserIcon from "./UserIcon";
 
 export default function VideoCall() {
   const [callTime, setCallTime] = useState(0);
@@ -21,7 +22,7 @@ export default function VideoCall() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const { endVideoCall } = useUser();
+  const { endVideoCall, activeDm } = useUser();
 
   // Timer
   useEffect(() => {
@@ -93,17 +94,16 @@ export default function VideoCall() {
           </div>
         </div>
 
-        {/* Top bar: name + timer + fullscreen */}
+        {/* Controls*/}
         <div className="absolute bottom-4 left-0 flex items-center justify-between px-4">
-          <div className="flex items-center gap-3 bg-black/30 backdrop-blur-md rounded-2xl px-4 py-1">
-            <img
-              src="https://avatar.iran.liara.run/public"
-              alt="Caller"
-              className="w-10 h-10 rounded-full border-2 border-white/20"
-            />
+          <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-2xl px-4 py-2">
+            <div>
+              <UserIcon userName={activeDm!.userName} />
+            </div>
+
             <div className="text-white">
               <p className="font-semibold truncate max-w-[120px]">
-                Alex Jones Johnson
+                {activeDm!.userName}
               </p>
               <p className="text-xs opacity-75 font-bold text-gray-300">
                 {formatTime(callTime)}

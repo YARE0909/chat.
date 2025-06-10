@@ -6,20 +6,11 @@ import VideoCall from "@/components/chat/VideoCall";
 import { useUser } from "@/context/UserContext";
 
 export default function Home() {
-  const {
-    startAudioCall,
-    inAudioCall,
-    endAudioCall,
-    inVideoCall,
-    startVideoCall,
-    endVideoCall,
-  } = useUser();
+ 
 
   return (
     <div className="flex h-screen">
-      <ChatSidebar />
       <ChatWindow />
-      {inVideoCall && <VideoCall />}
     </div>
   );
 }

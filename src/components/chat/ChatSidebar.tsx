@@ -4,17 +4,15 @@ import React from "react";
 import { Button } from "../common/Button";
 import AudioCall from "./AudioCall";
 import { useUser } from "@/context/UserContext";
+import UserIcon from "./UserIcon";
 
 export function ChatSidebar() {
-  const contacts = ["Alice", "Bob", "Charlie", "Dana"];
-  const activeContact = "Bob";
-
-  const { inAudioCall } = useUser();
+  const { inAudioCall, dmList, activeDm, updateCurrentDm } = useUser();
 
   return (
     <aside className="w-72 bg-white/10 backdrop-blur-md text-white flex flex-col gap-4 border-r border-zinc-700">
       {/* Header */}
-      <div className="w-full h-16 p-4 flex items-center justify-between border-b border-zinc-700">
+      <div className="w-full h-16 p-4 flex items-center justify-between">
         <h2 className="text-4xl font-bold tracking-wide">chat.</h2>
       </div>
       <div className="flex items-center gap-2 text-zinc-400 px-4">
@@ -30,30 +28,27 @@ export function ChatSidebar() {
       </div>
       {/* Contact List */}
       <ul className="flex-1 overflow-y-auto flex flex-col gap-1">
-        {contacts.map((name, idx) => {
-          const isActive = name === activeContact;
+        {dmList.map((name) => {
+          const isActive = name?.userId === activeDm?.userId;
           return (
             <li
-              key={name}
+              key={name.userId}
               className={`flex items-center gap-3 px-4 py-1 cursor-pointer rounded-lg mx-2 my-1 transition-all backdrop-blur-md
-                ${isActive ? "bg-black/30" : "hover:bg-black/10"}
+                ${isActive ? "bg-white/10" : "hover:bg-black/10"}
               `}
+              onClick={() => updateCurrentDm(name)}
             >
               {/* Avatar */}
-              <img
-                src={`https://avatar.iran.liara.run/public/${idx}`}
-                alt={name}
-                className="w-10 h-10 rounded-full object-cover ring-1 ring-zinc-700 shadow-neo-sm"
-              />
+              <UserIcon userName={name.userName} />
 
               {/* Name + Status */}
               <div className="flex-1">
-                <p className="font-medium leading-none">{name}</p>
-                <p className="text-xs text-zinc-400 mt-1">Online</p>
+                <p className="font-medium leading-none">{name.userName}</p>
+                <p className="text-xs font-bold text-zinc-400 mt-1">Online</p>
               </div>
 
               {/* Unread badge */}
-              <div className="w-2 h-2 bg-green-500 rounded-full shadow" />
+              <div className="w-2 h-2 bg-indigo-500 rounded-full shadow" />
             </li>
           );
         })}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Check, CheckCheck, FileText, ImageIcon, Mic } from "lucide-react";
+import { VoicePlayer } from "../common/AudioPlayer";
 
 interface Message {
   type: "text" | "image" | "file" | "voice";
@@ -33,11 +34,11 @@ export function MessageBubble({
       <div
         className={`max-w-xs p-2 my-1 rounded-2xl flex flex-col space-y-1 ${
           isMine
-            ? "bg-indigo-600 self-end text-white shadow-neo"
+            ? "bg-purple-600 self-end text-white shadow-neo"
             : "bg-white/10 self-start text-gray-100 shadow-neo"
         }`}
       >
-        {type === "text" && <p className="text-sm break-words">{content}</p>}
+        {type === "text" && <p className="text-sm break-words font-medium">{content}</p>}
 
         {type === "image" && (
           <img
@@ -60,10 +61,11 @@ export function MessageBubble({
         )}
 
         {type === "voice" && (
-          <audio controls className="w-full rounded-md bg-transparent">
-            <source src={content} />
-            Your browser does not support the audio element.
-          </audio>
+          // <audio controls className="w-full rounded-md bg-transparent">
+          //   <source src={content} />
+          //   Your browser does not support the audio element.
+          // </audio>
+          <VoicePlayer src={content} />
         )}
       </div>
 

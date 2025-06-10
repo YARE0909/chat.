@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "../common/Button";
 import { useUser } from "@/context/UserContext";
+import UserIcon from "./UserIcon";
 
 export default function AudioCall() {
   const [callTime, setCallTime] = useState(0);
@@ -19,7 +20,7 @@ export default function AudioCall() {
 
   const callRef = useRef<HTMLDivElement>(null);
 
-  const { endAudioCall } = useUser();
+  const { endAudioCall, activeDm } = useUser();
 
   useEffect(() => {
     const interval = setInterval(() => setCallTime((prev) => prev + 1), 1000);
@@ -46,17 +47,14 @@ export default function AudioCall() {
   return (
     <div
       ref={callRef}
-      className="z-50 w-full bg-black/30 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-4 flex flex-col items-center space-y-4"
+      className="z-50 w-full bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-4 flex flex-col items-center space-y-4"
     >
       {/* Avatar and Info */}
       <div className="w-full flex items-center justify-start gap-2">
-        <img
-          src="https://avatar.iran.liara.run/public"
-          alt="Caller"
-          className="w-16 h-16 rounded-full object-cover border-2 border-white/20"
-        />
+        <UserIcon userName={activeDm!.userName} />
+
         <div className="flex flex-col">
-          <p className="font-semibold text-white">Alex Johnson</p>
+          <p className="font-semibold text-white">{activeDm!.userName}</p>
           <p className="text-xs text-gray-400 font-bold">
             {formatTime(callTime)}
           </p>

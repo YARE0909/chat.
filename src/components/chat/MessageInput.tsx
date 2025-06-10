@@ -87,7 +87,7 @@ export function MessageInput({ onSend }: MessageInputProps) {
     `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
 
   return (
-    <div className="p-4 bg-white/10 backdrop-blur-md relative border-t border-zinc-700">
+    <div className="w-full p-4 bg-white/10 backdrop-blur-md relative">
       {/* Attachments Preview */}
       {files.length > 0 && (
         <div className="flex items-center justify-between mb-2">
@@ -125,7 +125,7 @@ export function MessageInput({ onSend }: MessageInputProps) {
 
       {/* Voice Recording Indicator */}
       {recording && (
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full bg-red-600 text-white text-xs px-2 py-1 rounded-md flex items-center space-x-1">
+        <div className="absolute -top-8 left-2 bg-red-600/40 text-white text-xs px-2 py-1 rounded-md flex items-center space-x-1">
           <StopCircle size={14} />{" "}
           <span>Recording... {formatSeconds(recordTime)}</span>
         </div>
