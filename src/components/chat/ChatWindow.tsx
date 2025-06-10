@@ -180,8 +180,7 @@ export default function ChatWindow() {
 
   const socket = getSocket();
 
-  const { inAudioCall, inVideoCall, dmList, activeDm, updateCurrentDm } =
-    useUser();
+  const { inVideoCall, activeDm } = useUser();
 
   useEffect(() => {
     console.log({ activeDm });
@@ -213,11 +212,6 @@ export default function ChatWindow() {
         { type: "text", content: msg.trim(), isMine: true },
       ]);
     }
-  };
-
-  const handleToast = async () => {
-    toast.success("TOAST");
-    toast.error("TOAST");
   };
 
   return (
@@ -254,11 +248,7 @@ export default function ChatWindow() {
               Select a chat from the sidebar or start a new conversation to get
               messaging!
             </p>
-            <Button
-              icon={PlusCircle}
-              label="New Message"
-              onClick={handleToast}
-            />
+            <Button icon={PlusCircle} label="New Message" />
           </div>
         </div>
       )}
