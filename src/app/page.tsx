@@ -78,7 +78,7 @@ export default function LoginPage() {
         setAction("Login");
         reset();
       } else {
-        toast.error("Something Went Wrong");
+        toast.error(res.message || "Something Went Wrong");
       }
     } catch (err) {
       toast.error("Registration failed.");
