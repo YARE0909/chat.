@@ -7,11 +7,11 @@ import {
   StopCircle,
   Image as ImageIcon,
   FileText,
-  Smile,
   X,
   Trash2,
 } from "lucide-react";
 import { Button } from "../common/Button";
+import EmojiPicker from "./EmojiPicker";
 
 export interface MessageInputProps {
   onSend: (msg: string, files?: File[], voiceBlob?: Blob) => void;
@@ -83,6 +83,10 @@ export function MessageInput({ onSend }: MessageInputProps) {
     }
   };
 
+  const handleEmojiSelect = (emoji: string) => {
+    setMsg((prev) => (prev || "") + emoji);
+  };
+
   const formatSeconds = (s: number) =>
     `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, "0")}`;
 
@@ -133,9 +137,11 @@ export function MessageInput({ onSend }: MessageInputProps) {
 
       <div className="w-full h-full flex items-center px-4 space-x-2">
         {/* Emoji picker placeholder */}
-        <div>
+        {/* <div>
           <Button icon={Smile} />
-        </div>
+        </div> */}
+
+        <EmojiPicker onSelect={handleEmojiSelect} />
 
         {/* File upload */}
         <div>
