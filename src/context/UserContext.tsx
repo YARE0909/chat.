@@ -1,4 +1,5 @@
 "use client";
+import { getUserToken } from "@/lib/utils";
 import React, {
   createContext,
   useContext,
@@ -6,6 +7,7 @@ import React, {
   ReactNode,
   useCallback,
 } from "react";
+import jwt from "jsonwebtoken";
 
 interface UserContextValue {
   inAudioCall: boolean;
@@ -15,44 +17,43 @@ interface UserContextValue {
   startVideoCall: () => void;
   endVideoCall: () => void;
   dmList: {
-    userId: number;
-    userName: string;
+    chatId: number;
+    title: string;
   }[];
   updateDmList: (
     list: {
-      userId: number;
-      userName: string;
+      chatId: number;
+      title: string;
     }[]
   ) => void;
-  activeDm: {
-    userId: number;
-    userName: string;
-  } | undefined;
-  updateCurrentDm: (user: { userId: number; userName: string }) => void;
+  activeDm:
+    | {
+        chatId: number;
+        title: string;
+      }
+    | undefined;
+  updateCurrentDm: (user: { chatId: number; title: string }) => void;
+  user: { id: number; email: string } | null;
+  updateUser: () => void;
   // ...add more shared state/actions here
 }
 
 const UserContext = createContext<UserContextValue | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<{ id: number; email: string } | null>(null);
   const [inAudioCall, setInAudioCall] = useState(false);
   const [inVideoCall, setInVideoCall] = useState(false);
   const [dmList, setDmList] = useState<
     {
-      userId: number;
-      userName: string;
+      chatId: number;
+      title: string;
     }[]
-  >([
-    { userId: 0, userName: "John Doe" },
-    { userId: 1, userName: "Bob" },
-    { userId: 2, userName: "Charlie" },
-    { userId: 3, userName: "Dana" },
-    { userId: 4, userName: "Jack" },
-  ]);
+  >([]);
   const [activeDm, setActiveDm] = useState<
     | {
-        userId: number;
-        userName: string;
+        chatId: number;
+        title: string;
       }
     | undefined
   >();
@@ -62,17 +63,27 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const startVideoCall = useCallback(() => setInVideoCall(true), []);
   const endVideoCall = useCallback(() => setInVideoCall(false), []);
 
+  const updateUser = useCallback(async () => {
+    const token = await getUserToken();
+
+    if (!token) return;
+    const decoded: any = jwt.decode(token);
+    const { id, email } = decoded;
+    setUser({ id, email });
+  }, []);
+
   const updateDmList = useCallback(
     (
       list: {
-        userId: number;
-        userName: string;
+        chatId: number;
+        title: string;
       }[]
     ) => setDmList(list),
     []
   );
+
   const updateCurrentDm = useCallback(
-    (user: { userId: number; userName: string }) => setActiveDm(user),
+    (user: { chatId: number; title: string }) => setActiveDm(user),
     []
   );
 
@@ -89,6 +100,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
         updateDmList,
         activeDm,
         updateCurrentDm,
+        user,
+        updateUser,
       }}
     >
       {children}

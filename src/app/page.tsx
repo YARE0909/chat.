@@ -16,10 +16,15 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { login } from "@/actions/authentication/login";
 import { register as userRegister } from "@/actions/authentication/register";
 import toast from "react-hot-toast";
+import { useSocket } from "@/context/SocketContext";
+import { useUser } from "@/context/UserContext";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [action, setAction] = useState<"Login" | "Register">("Login");
+
+  const { connectSocket } = useSocket();
+  const { updateUser } = useUser();
 
   const router = useRouter();
 
@@ -54,6 +59,7 @@ export default function LoginPage() {
 
       if (res.status === "success") {
         toast.success(res.message);
+        connectSocket();
         router.push(res.data.role === "ADMIN" ? "/admin" : "/chat");
       } else {
         toast.error(res.message);

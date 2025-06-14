@@ -1,30 +1,38 @@
-import React from "react";
-import { Check, CheckCheck, FileText, ImageIcon, Mic } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Check, CheckCheck, FileText } from "lucide-react";
 import { VoicePlayer } from "../common/AudioPlayer";
 
 interface Message {
-  type: "text" | "image" | "file" | "voice";
+  type: "TEXT" | "IMAGE" | "FILE" | "VOICE" | "VIDEO";
   content: string;
   isMine?: boolean;
-  timestamp?: string;
-  status?: "sent" | "delivered" | "read";
+  timestamp: string;
+  status?: "SENT" | "DELIVERED" | "READ";
 }
 
 export function MessageBubble({
-  type,
+  type = "TEXT",
   content,
   isMine = false,
-  timestamp = "12:00 PM",
+  timestamp,
   status = "read",
 }: Message) {
+  const [sentAt, setSentAt] = useState<string>("");
+
+  useEffect(() => {
+    const date = new Date(timestamp).toLocaleDateString();
+    const time = new Date(timestamp).toLocaleTimeString();
+    setSentAt(`${date} ${time}`);
+  }, []);
+
   const statusIcon = () => {
     if (!isMine) return null;
     switch (status) {
-      case "sent":
+      case "SENT":
         return <Check className="w-4 h-4" />;
-      case "delivered":
+      case "DELIVERED":
         return <CheckCheck className="w-4 h-4" />;
-      case "read":
+      case "READ":
         return <CheckCheck className="w-4 h-4 text-green-400 animate-pulse" />;
     }
   };
@@ -38,9 +46,11 @@ export function MessageBubble({
             : "bg-white/10 backdrop-blur-lg self-start text-gray-100"
         }`}
       >
-        {type === "text" && <p className="text-sm break-words font-medium">{content}</p>}
+        {type === "TEXT" && (
+          <p className="text-sm break-words font-medium">{content}</p>
+        )}
 
-        {type === "image" && (
+        {type === "IMAGE" && (
           <img
             src={content}
             alt="Sent Image"
@@ -48,7 +58,7 @@ export function MessageBubble({
           />
         )}
 
-        {type === "file" && (
+        {type === "FILE" && (
           <a
             href={content}
             target="_blank"
@@ -60,7 +70,7 @@ export function MessageBubble({
           </a>
         )}
 
-        {type === "voice" && (
+        {type === "VOICE" && (
           // <audio controls className="w-full rounded-md bg-transparent">
           //   <source src={content} />
           //   Your browser does not support the audio element.
@@ -74,7 +84,7 @@ export function MessageBubble({
           !isMine && "pl-1"
         }`}
       >
-        <span className="font-bold text-gray-400">{timestamp}</span>
+        <span className="font-bold text-gray-400">{sentAt}</span>
         {statusIcon()}
       </div>
     </div>
