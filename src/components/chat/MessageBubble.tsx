@@ -15,7 +15,7 @@ export function MessageBubble({
   content,
   isMine = false,
   timestamp,
-  status = "read",
+  status = "SENT",
 }: Message) {
   const [sentAt, setSentAt] = useState<string>("");
 
