@@ -13,6 +13,7 @@ import { getUserToken } from "@/lib/utils";
 import jwt from "jsonwebtoken";
 import Modal from "../common/Modal";
 import { Input } from "../common/Input";
+import CreateModalChat from "./CreateChatModal";
 
 export function ChatSidebar() {
   const [createChatModal, setCreateChatModal] = useState<boolean>(false);
@@ -56,6 +57,7 @@ export function ChatSidebar() {
         memberIds: [Number(userId)],
         type: "DM",
       });
+      setCreateChatModal(false);
     }
   };
 
@@ -120,49 +122,53 @@ export function ChatSidebar() {
       )}
 
       {createChatModal && (
-        <Modal title="New Chat" close={() => setCreateChatModal(false)}>
-          <div className="flex flex-col gap-4">
-            <div>
-              <Input
-                type="text"
-                onChange={(e) => {
-                  console.log(e.target.value);
-                  setCreateChatValue(e.target.value);
-                }}
-                value={createChatValue}
-                icon={SearchIcon}
-                placeholder="Search Users"
-              />
-            </div>
-            <ul className="flex-1 overflow-y-auto flex flex-col gap-2 px-2">
-              {dmList.map((name) => {
-                const isActive = name?.chatId === activeDm?.chatId;
-                return (
-                  <li
-                    key={name.chatId}
-                    className={`flex items-center gap-3 px-4 py-1 cursor-pointer rounded-lg transition-all backdrop-blur-md
-                ${isActive ? "bg-white/10" : "hover:bg-white/10"}
-              `}
-                    onClick={() => createChat(name.chatId)}
-                  >
-                    {/* Avatar */}
-                    <UserIcon userName={name.title} />
+        <CreateModalChat
+          setCreateChatModal={setCreateChatModal}
+          createChat={createChat}
+        />
+        // <Modal title="New Chat" close={() => setCreateChatModal(false)}>
+        //   <div className="flex flex-col gap-4">
+        //     <div>
+        //       <Input
+        //         type="text"
+        //         onChange={(e) => {
+        //           console.log(e.target.value);
+        //           setCreateChatValue(e.target.value);
+        //         }}
+        //         value={createChatValue}
+        //         icon={SearchIcon}
+        //         placeholder="Search Users"
+        //       />
+        //     </div>
+        //     <ul className="flex-1 overflow-y-auto flex flex-col gap-2 px-2">
+        //       {dmList.map((name) => {
+        //         const isActive = name?.chatId === activeDm?.chatId;
+        //         return (
+        //           <li
+        //             key={name.chatId}
+        //             className={`flex items-center gap-3 px-4 py-1 cursor-pointer rounded-lg transition-all backdrop-blur-md
+        //         ${isActive ? "bg-white/10" : "hover:bg-white/10"}
+        //       `}
+        //             onClick={() => createChat(name.chatId)}
+        //           >
+        //             {/* Avatar */}
+        //             <UserIcon userName={name.title} />
 
-                    {/* Name + Status */}
-                    <div className="flex-1">
-                      <p className="font-medium leading-none">
-                        {name.title}
-                      </p>
-                      <p className="text-xs font-bold text-zinc-400 mt-1">
-                        Online
-                      </p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </Modal>
+        //             {/* Name + Status */}
+        //             <div className="flex-1">
+        //               <p className="font-medium leading-none">
+        //                 {name.title}
+        //               </p>
+        //               <p className="text-xs font-bold text-zinc-400 mt-1">
+        //                 Online
+        //               </p>
+        //             </div>
+        //           </li>
+        //         );
+        //       })}
+        //     </ul>
+        //   </div>
+        // </Modal>
       )}
     </aside>
   );

@@ -5,7 +5,7 @@ import type { ApiResponse, Endpoint } from "./types";
 function createApiClient() {
   return async function <Req, Res>(
     endpoint: Endpoint<Req, Res>,
-    body: Req | FormData
+    body?: Req | FormData
   ): Promise<ApiResponse<Res>> {
     const isForm = body instanceof FormData;
     const headers: Record<string, string> = isForm

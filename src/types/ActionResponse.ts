@@ -1,5 +1,5 @@
-export default interface ActionResponse {
+export default interface ActionResponse<T = any> {
   status: "success" | "failure";
   message: string;
-  data?: any;
+  data?: T | null;
 }

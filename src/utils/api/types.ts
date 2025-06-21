@@ -39,3 +39,9 @@ export interface LogoutRequest {
 export interface GetQuestionListRequest {
   testid: number;
 }
+
+export interface getUsersListResponse {
+  id: number;
+  email: string;
+  name: string;
+}

@@ -77,7 +77,9 @@ export default function ChatWindow() {
                 content={m.content}
                 isMine={m.authorId === user?.id}
                 timestamp={m.createdOn}
-                status="SENT"
+                status={
+                  m.statuses.filter((s: any) => s.userId !== user?.id)[0].status
+                }
               />
             ))}
           </div>

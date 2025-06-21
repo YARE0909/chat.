@@ -1,5 +1,6 @@
 import {
   Endpoint,
+  getUsersListResponse,
   LoginRequest,
   LoginResponse,
   LogoutRequest,
@@ -23,4 +24,10 @@ export const endpoints = {
     path: () => "/api/auth/logout",
     type: "CLOSE",
   } as Endpoint<LogoutRequest, null>,
+
+  getUsersList: {
+    method: "GET",
+    path: () => "/api/users/usersList",
+    type: "CLOSE",
+  } as Endpoint<null, getUsersListResponse[]>,
 };
